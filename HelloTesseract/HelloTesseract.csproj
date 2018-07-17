@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>HelloTesseract</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="TesseractApp.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppHost\AppHost.csproj" />
+    <ProjectReference Include="..\OpenGL.Net\OpenGL.Net.Math_netcore2.0.csproj" />
+    <ProjectReference Include="..\OpenGL.Net\OpenGL.Net_netcore2.0.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -238,7 +238,7 @@ namespace OpenGL
 		/// </summary>
 		/// <param name="funcname"></param>
 		/// <returns></returns>
-		[DllImport("libEGL.dll", EntryPoint = "eglGetProcAddress")]
+		[DllImport("libEGL.so", EntryPoint = "eglGetProcAddress")]
 		public static extern IntPtr GetProcAddressCore(string funcname);
 
 		#endregion

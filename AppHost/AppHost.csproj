@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>AppHost</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+     <ProjectReference Include="..\OpenGL.Net.CoreUI\OpenGL.Net.CoreUI_netcore2.0.csproj" />
+     <ProjectReference Include="..\OpenGL.Net.VideoCore\OpenGL.Net.VideoCore.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -307,14 +307,14 @@ namespace Khronos
 			public const int RTLD_NOW = 2;
 
 			[DllImport("dl")]
-			public static extern IntPtr dlopen([MarshalAs(UnmanagedType.LPTStr)] string filename, int flags);
+			public static extern IntPtr dlopen(string filename, int flags);
 
 			[DllImport("dl")]
-			public static extern IntPtr dlsym(IntPtr handle, [MarshalAs(UnmanagedType.LPTStr)] string symbol);
+			public static extern IntPtr dlsym(IntPtr handle, string symbol);
 
-			[DllImport("dl")]
+			[DllImport("dl", EntryPoint = "dlerror")]
 			public static extern string dlerror();
-		}
+        }
 
 		#endregion
 
@@ -384,8 +384,10 @@ namespace Khronos
 
 			if (_LibraryHandles.TryGetValue(libraryPath, out libraryHandle) == false) {
 				if ((libraryHandle = UnsafeNativeMethods.dlopen(libraryPath, UnsafeNativeMethods.RTLD_LAZY)) == IntPtr.Zero) {
-					if (throws)
-						throw new InvalidOperationException($"unable to load library at {libraryPath}", new InvalidOperationException(UnsafeNativeMethods.dlerror()));
+					if (throws){
+                        string err = UnsafeNativeMethods.dlerror(); ;
+						throw new InvalidOperationException($"unable to load library at {libraryPath}. Error: {err}", new InvalidOperationException(err));
+					}
 				}
 					
 				_LibraryHandles.Add(libraryPath, libraryHandle);

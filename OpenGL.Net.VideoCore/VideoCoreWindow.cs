@@ -21,6 +21,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using static OpenGL.Bcm;
 
 namespace OpenGL
 {
@@ -29,16 +30,19 @@ namespace OpenGL
 	/// </summary>
 	public class VideoCoreWindow : IDisposable
 	{
+        private int width;
+        private int height;
+
 		#region Constructors
 
 		/// <summary>
 		/// Static constructor.
 		/// </summary>
-		static VideoCoreWindow()
-		{
-			// Support for RPi
-			KhronosApi.EglInitializing += KhronosApi_PlatformInit_Rpi;
-		}
+        static VideoCoreWindow()
+        {
+	        // Support for RPi
+	        KhronosApi.EglInitializing += KhronosApi_PlatformInit_Rpi;
+        }
 
 		/// <summary>
 		/// Initialize RPi Broadcom VideoCore IV API.
@@ -48,7 +52,10 @@ namespace OpenGL
 		private static void KhronosApi_PlatformInit_Rpi(object sender, EglEventArgs e)
 		{
 			if (Bcm.IsAvailable)
+            {
+                Console.WriteLine("Initialize bcm host");
 				Bcm.bcm_host_init();
+            }
 		}
 
 		/// <summary>
@@ -57,12 +64,16 @@ namespace OpenGL
 		public VideoCoreWindow()
 		{
 			try {
-				int width, height;
 
-				KhronosApi.LogComment("Creating VideoCore IV native window");
+                Bcm.bcm_host_init();
 
-				if (Bcm.graphics_get_display_size(0 /* LCD */, out width, out height) < 0)
-					throw new InvalidOperationException("unable to get BCM display size");
+                KhronosApi.LogComment("Creating VideoCore IV native window");
+
+                var res = UnsafeNativeMethods.graphics_get_display_size(0, out width, out height);
+                Console.WriteLine($"Get display size returned {width},{height}. Error code was {res}");
+
+				//if (Bcm.graphics_get_display_size(0 /* LCD */, out width, out height) < 0)
+					//throw new InvalidOperationException("unable to get BCM display size");
 
 				Bcm.VC_RECT_T dstRect = new Bcm.VC_RECT_T(0, 0, width, height);
 				Bcm.VC_RECT_T srcRect = new Bcm.VC_RECT_T(0, 0, width << 16, height << 16);
@@ -91,10 +102,12 @@ namespace OpenGL
 			}
 		}
 
-		#endregion
+        #endregion
 
-		#region VideoCore Handles
+        #region VideoCore Handles
 
+        public int Width => width;
+        public int Height => height;
 		/// <summary>
 		/// Get the display handle associated this instance.
 		/// </summary>

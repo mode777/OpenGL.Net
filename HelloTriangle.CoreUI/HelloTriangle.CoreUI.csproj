@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGL.Net.CoreUI\OpenGL.Net.CoreUI_netcore2.0.csproj" />
+    <ProjectReference Include="..\OpenGL.Net\OpenGL.Net.Math_netcore2.0.csproj" />
+    <ProjectReference Include="..\OpenGL.Net\OpenGL.Net_netcore2.0.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <StartupObject>HelloTriangle.CoreUI.Program</StartupObject>
+  </PropertyGroup>
+
+</Project>
