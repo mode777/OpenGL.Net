@@ -7,7 +7,7 @@ namespace HelloTesseract
     {
         static void Main(string[] args)
         {
-            using (var host = GLHostFactory.CreateHost(new SimpleApp()))
+            using (var host = GLHostFactory.CreateHost(new TestApp()))
             {               
             }           
         }

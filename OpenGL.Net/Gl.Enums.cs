@@ -242,10 +242,10 @@ namespace OpenGL
 	[Flags()]
 	public enum AttribMask : uint
 	{
-		/// <summary>
-		/// Strongly typed for value GL_ACCUM_BUFFER_BIT.
-		/// </summary>
-		[RequiredByFeature("GL_VERSION_1_0")]
+        /// <summary>
+        /// Strongly typed for value GL_ACCUM_BUFFER_BIT.
+        /// </summary>
+        [RequiredByFeature("GL_VERSION_1_0")]
 		[RemovedByFeature("GL_VERSION_3_2")]
 		AccumBufferBit = Gl.ACCUM_BUFFER_BIT,
 
@@ -5800,10 +5800,17 @@ namespace OpenGL
 	/// </summary>
 	public enum GetPName
 	{
-		/// <summary>
-		/// Strongly typed for value GL_ACCUM_ALPHA_BITS.
-		/// </summary>
-		[RequiredByFeature("GL_VERSION_1_0")]
+        /// <summary>
+        /// Strongly typed for value GL_ACTIVE_TEXTURE.
+        /// </summary>
+        [RequiredByFeature("GL_VERSION_1_0")]
+        [RemovedByFeature("GL_VERSION_3_2")]
+        ActiveTexture = Gl.ACTIVE_TEXTURE,
+
+        /// <summary>
+        /// Strongly typed for value GL_ACCUM_ALPHA_BITS.
+        /// </summary>
+        [RequiredByFeature("GL_VERSION_1_0")]
 		[RemovedByFeature("GL_VERSION_3_2")]
 		AccumAlphaBits = Gl.ACCUM_ALPHA_BITS,
 
@@ -7267,10 +7274,17 @@ namespace OpenGL
 		[RequiredByFeature("GL_SGI_color_matrix")]
 		MaxColorMatrixStackDepth = Gl.MAX_COLOR_MATRIX_STACK_DEPTH,
 
-		/// <summary>
-		/// Strongly typed for value GL_MAX_EVAL_ORDER.
-		/// </summary>
-		[RequiredByFeature("GL_VERSION_1_0")]
+        /// <summary>
+        /// Strongly typed for value GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS.
+        /// </summary>
+        [RequiredByFeature("GL_VERSION_1_0")]
+        [RemovedByFeature("GL_VERSION_3_2")]
+        MaxCombinedTextureImageUnits = Gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS,
+
+        /// <summary>
+        /// Strongly typed for value GL_MAX_EVAL_ORDER.
+        /// </summary>
+        [RequiredByFeature("GL_VERSION_1_0")]
 		[RemovedByFeature("GL_VERSION_3_2")]
 		MaxEvalOrder = Gl.MAX_EVAL_ORDER,
 
